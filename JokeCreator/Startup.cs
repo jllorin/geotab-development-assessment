@@ -1,5 +1,5 @@
 using JokeCreator.Joke;
-using JokeCreator.Name;
+using JokeCreator.Person;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +33,8 @@ namespace JokeCreator
             services.AddTransient(typeof(ICategoryRepository), typeof(CategoryRepository));
             services.AddTransient(typeof(IJokeService), typeof(JokeService));
 
-            services.AddTransient(typeof(INameRepository), typeof(NameRepository));
+            services.AddTransient(typeof(IPersonRepository), typeof(PersonRepository));
+            services.AddTransient(typeof(IPersonService), typeof(PersonService));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

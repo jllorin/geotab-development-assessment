@@ -9,7 +9,6 @@ namespace JokeCreator.Joke
 {
     [ApiController]
     [Route("[controller]")]
-
     public class JokeController : ControllerBase
     {
         private readonly ILogger<JokeController> _logger;
@@ -39,7 +38,6 @@ namespace JokeCreator.Joke
                 _logger.LogError(ex, ex.Message);
                 return StatusCode(500);
             }
-
         }
     }
 }
