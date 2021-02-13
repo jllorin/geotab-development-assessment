@@ -21,16 +21,25 @@ namespace JokeCreator.Joke
             _jokeService = jokeService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<List<string>>> Get(Option option)
+        [HttpPost]
+        public async Task<ActionResult<List<string>>> GetRandomJokes(Option option)
         {
-            if (ModelState.IsValid)
+            try
             {
-                return BadRequest();
+                if (option == null || !ModelState.IsValid)
+                {
+                    return BadRequest(option);
+                }
+
+                List<string> jokeList = await _jokeService.GetRandomJokes(option);
+                return Ok(jokeList);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return StatusCode(500);
             }
 
-            List<string> jokeList = await _jokeService.GetRandomJokes(option);
-            return Ok(jokeList);
         }
     }
 }
