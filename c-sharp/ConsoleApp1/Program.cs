@@ -115,7 +115,8 @@ namespace ConsoleApp1
 
         private static void getCategories()
         {
-            new JsonFeed("https://api.chucknorris.io", 0);
+            //new JsonFeed("https://api.chucknorris.io", 0);
+            new JsonFeed("https://api.chucknorris.io/jokes/categories", 0);
             results = JsonFeed.GetCategories();
         }
 
