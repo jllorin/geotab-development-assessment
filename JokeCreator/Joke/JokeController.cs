@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace JokeCreator.Joke
 {
+    [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
     public class JokeController : ControllerBase
@@ -20,8 +21,8 @@ namespace JokeCreator.Joke
             _jokeService = jokeService;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<List<string>>> GetRandomJokes(Option option)
+        [HttpPost("generate")]
+        public async Task<ActionResult<List<string>>> GetRandomJokes([FromBody] Option option)
         {
             try
             {

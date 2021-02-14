@@ -26,8 +26,21 @@ namespace JokeCreator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .WithOrigins(Configuration["Cors:Origins"])
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddControllers();
             services.AddHttpClient();
+
 
             services.AddTransient(typeof(IJokeRepository), typeof(JokeRepository));
             services.AddTransient(typeof(IJokeService), typeof(JokeService));
@@ -48,6 +61,7 @@ namespace JokeCreator
             }
 
             app.UseRouting();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
