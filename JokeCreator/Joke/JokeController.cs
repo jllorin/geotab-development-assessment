@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace JokeCreator.Joke
 {
-    [Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
     public class JokeController : ControllerBase
