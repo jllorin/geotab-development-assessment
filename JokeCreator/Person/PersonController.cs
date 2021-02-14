@@ -30,7 +30,7 @@ namespace JokeCreator.Person
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, ex.Message);
+                _logger.LogError(ex, ex.StackTrace);
                 return StatusCode(500);
             }
         }
