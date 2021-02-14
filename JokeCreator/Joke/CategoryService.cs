@@ -14,9 +14,9 @@ namespace JokeCreator.Joke
     public class CategoryService : ICategoryService
     {
         private readonly ILogger<CategoryService> _logger;
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly ICategoryRepository<List<string>> _categoryRepository;
 
-        public CategoryService(ILogger<CategoryService> logger, ICategoryRepository categoryRepository)
+        public CategoryService(ILogger<CategoryService> logger, ICategoryRepository<List<string>> categoryRepository)
         {
             _logger = logger;
             _categoryRepository = categoryRepository;

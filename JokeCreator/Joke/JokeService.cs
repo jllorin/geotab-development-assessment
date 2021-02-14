@@ -14,9 +14,9 @@ namespace JokeCreator.Joke
     public class JokeService : IJokeService
     {
         private readonly ILogger<JokeService> _logger;
-        private readonly IJokeRepository _jokeRepository;
+        private readonly IJokeRepository<Joke> _jokeRepository;
 
-        public JokeService(ILogger<JokeService> logger, IJokeRepository jokeRepository)
+        public JokeService(ILogger<JokeService> logger, IJokeRepository<Joke> jokeRepository)
         {
             _logger = logger;
             _jokeRepository = jokeRepository;

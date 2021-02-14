@@ -12,9 +12,9 @@ namespace JokeCreator.Person
 
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository _personRepository;
+        private readonly IPersonRepository<Person> _personRepository;
 
-        public PersonService(IPersonRepository personRepository)
+        public PersonService(IPersonRepository<Person> personRepository)
         {
             _personRepository = personRepository;
         }

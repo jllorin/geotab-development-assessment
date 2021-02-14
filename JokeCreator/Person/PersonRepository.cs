@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using JokeCreator.Common;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -8,40 +9,22 @@ using System.Threading.Tasks;
 
 namespace JokeCreator.Person
 {
-    public interface IPersonRepository
+    public interface IPersonRepository<T>
     {
-        Task<Person> GetPerson();        
+        Task<T> GetPerson();        
     }
 
-    public class PersonRepository : IPersonRepository
+    public class PersonRepository : HttpClientBaseRepository<Person, PersonRepository>, IPersonRepository<Person>
     {
-        private readonly ILogger<PersonRepository> _logger;
-        private readonly IHttpClientFactory _clientFactory;
-
-        public PersonRepository(ILogger<PersonRepository> logger, IHttpClientFactory clientFactory)
+        public PersonRepository(ILogger<PersonRepository> logger, IHttpClientFactory clientFactory) : base(logger, clientFactory)
         {
-            _logger = logger;
-            _clientFactory = clientFactory;
         }
 
         public async Task<Person> GetPerson()
         {
             string url = "https://www.names.privserv.com/api/";
-            try
-            {
-                var request = new HttpRequestMessage(HttpMethod.Get, url);
-                HttpClient client = _clientFactory.CreateClient();
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                var person = JObject.Parse(responseBody).ToObject<Person>();
-                return person;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Http client call on url: {url} in person repository failed. ");
-                throw ex;
-            }
+            var person = await GetObject(url);
+            return person;
         }
     }
 }

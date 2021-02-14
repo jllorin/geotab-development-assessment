@@ -152,7 +152,7 @@ function App()
               <Autocomplete id='combo-box-demo' options={categories} getOptionLabel={(option) => option} 
                   onChange={onCategoryChange} renderInput={(params) => 
                     <TextField {...params} label='Enter a category' variant='outlined' />} />
-              <TextField id='outlined-number' required label='How many jokes do you want? (1-9)' type='number' variant='outlined' 
+              <TextField id='no-of-jokes-text' required label='How many jokes do you want? (1-9)' type='number' variant='outlined' 
                 value={options.noOfJokes} onChange={onNoOfJokesChanged} 
                 error={errors.find(error => error.key === 'noOfJokes') !== undefined}
                 helperText={errors.find(error => error.key === 'noOfJokes')?.message} />              
@@ -160,13 +160,13 @@ function App()
             <div>
               <Typography className='random-name-label' variant='subtitle1'>Want to use a random name?</Typography>
               <Typography variant='subtitle1'>No</Typography>
-              <Switch color="primary" name="randomNameChecked" onChange={onChangeRandomName} />
+              <Switch id='random-name-used' color="primary" name="randomNameChecked" onChange={onChangeRandomName} />
               <Typography variant='subtitle1'>Yes</Typography>
             </div>
             {options.randomNameUsed && <div className='line'>
-              <TextField id='outlined-number' label='Replace Chuck with?' variant='outlined' value={options.firstName}
+              <TextField id='outlined-firstName' label='Replace Chuck with?' variant='outlined' value={options.firstName}
                 InputProps={{ readOnly: true, }} InputLabelProps={{ shrink: true }} />              
-              <TextField id='outlined-number' label='Replace Norris with?' variant='outlined' value={options.lastName}
+              <TextField id='outlined-lastName' label='Replace Norris with?' variant='outlined' value={options.lastName}
                 InputProps={{ readOnly: true }} InputLabelProps={{ shrink: true }} />
             </div>}
             <div>

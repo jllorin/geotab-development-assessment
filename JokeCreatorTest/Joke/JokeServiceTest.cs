@@ -12,13 +12,13 @@ namespace JokeCreatorTest.Joke
     public class JokeServiceTest
     {
         private ILogger<JokeService> _logger;
-        private IJokeRepository _jokeRepository;
+        private IJokeRepository<JokeCreator.Joke.Joke> _jokeRepository;
         private IJokeService _jokeService;
 
         [SetUp]
         public void Setup()
         {
-            _jokeRepository = Substitute.For<IJokeRepository>();
+            _jokeRepository = Substitute.For<IJokeRepository<JokeCreator.Joke.Joke>>();
             _logger = Substitute.For<ILogger<JokeService>>();
             _jokeService = new JokeService(_logger, _jokeRepository);
         }

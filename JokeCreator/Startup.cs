@@ -42,13 +42,13 @@ namespace JokeCreator
             services.AddHttpClient();
 
 
-            services.AddTransient(typeof(IJokeRepository), typeof(JokeRepository));
+            services.AddTransient(typeof(IJokeRepository<Joke.Joke>), typeof(JokeRepository));
             services.AddTransient(typeof(IJokeService), typeof(JokeService));
 
-            services.AddTransient(typeof(ICategoryRepository), typeof(CategoryRepository));
+            services.AddTransient(typeof(ICategoryRepository<List<string>>), typeof(CategoryRepository));
             services.AddTransient(typeof(ICategoryService), typeof(CategoryService));
 
-            services.AddTransient(typeof(IPersonRepository), typeof(PersonRepository));
+            services.AddTransient(typeof(IPersonRepository<Person.Person>), typeof(PersonRepository));
             services.AddTransient(typeof(IPersonService), typeof(PersonService));
         }
 

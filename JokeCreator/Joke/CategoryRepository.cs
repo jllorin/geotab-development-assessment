@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using JokeCreator.Common;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -8,41 +9,23 @@ using System.Threading.Tasks;
 
 namespace JokeCreator.Joke
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository<T>
     {
-        Task<List<string>> GetCategories();
+        Task<T> GetCategories();
     }
 
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : HttpClientBaseRepository<List<string>, CategoryRepository>, ICategoryRepository<List<string>>
     {
-        private readonly ILogger<CategoryRepository> _logger;
-        private readonly IHttpClientFactory _clientFactory;
-
-        public CategoryRepository(ILogger<CategoryRepository> logger, IHttpClientFactory clientFactory)
+        public CategoryRepository(ILogger<CategoryRepository> logger, IHttpClientFactory clientFactory) : base(logger, clientFactory)
         {
-            _logger = logger;
-            _clientFactory = clientFactory;
         }
 
 
         public async Task<List<string>> GetCategories()
         {
             string url = "https://api.chucknorris.io/jokes/categories";
-            try
-            {
-                var request = new HttpRequestMessage(HttpMethod.Get, url);
-                HttpClient client = _clientFactory.CreateClient();
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
-                var categories = JArray.Parse(responseBody).ToObject<List<string>>();
-                return categories;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Http client call on url: {url} in person repository failed. ");
-                throw ex;
-            }
+            var categories = await GetList(url);
+            return categories;
         }
     }
 }
