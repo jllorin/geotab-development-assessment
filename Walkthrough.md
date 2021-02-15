@@ -39,9 +39,9 @@ I've added visual components to the different filters and questions you ask to t
 - I used dependency injection, so you can inject like logger, HttpClient to places you will need it.
 - I used interfaces and used that instead of concrete classes so I can substitute it with mocks on unit testing.
 - Rather than working on a string when I got the feed to replace Chuck Norris, I used an object and used Replace instead of indexof so I can change all Chuck's names instead of just one Chuck if Chuck's name appears multiple times.
-- I used IHttpClientFactory instead of instantiating a new HttpClient whenever you need it. There is a bug I believe when you do this.
+- I used IHttpClientFactory instead of instantiating a new HttpClient whenever you need it. There is a bug I believe when you do instantiate HttpClient directly.
 - I made the code more readable I believe.
-- I used dependency injection (singleton/transient) to create my classes instead of static classes.
+- I used dependency injection (singleton/transient) to create my classes instead of static classes. I can use singleton or transient if necessary.
 - I fixed the bugs.
 - UI is better
 
