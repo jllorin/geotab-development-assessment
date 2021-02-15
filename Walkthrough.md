@@ -23,7 +23,7 @@ Make sure you have .net sdk 3.1 installed on your machine.
 
 I created a full stack application where I used dotNet Core as my backend and React, Javascript, HTML, CSS as my front-end. 
 
-For my backend, I used the microservices, domain-driven, service-repository architecture. In my experience in microservices, I like the domain-driven approach with service repository pattern where you divide the problem at hand into different domains. Inside the domain, you add services, repositories and controllers as needed. There are 2 domains that I saw, one is the joke and the other is the name of the person. Having this architecture limit the number of models you need to create as compared to the data layer-business layer-controller design where you have models for every layer. I find that monolith benefit from the data layer/business layer but not microservices because microservices generally are small.
+For my backend, I used the microservices, domain-driven, service-repository architecture. In my experience in microservices, I like the domain-driven design (DDD) approach with service repository pattern where you divide the problem at hand into different domains. Inside the domain, you add services, repositories and controllers as needed. There are 2 domains that I saw, one is the joke and the other is the name of the person. Having this architecture limit the number of models you need to create as compared to the data layer-business layer-controller design where you have models for every layer. I find that monolith benefit from the data layer/business layer but not microservices because microservices generally are small.
 
 For my front-end, I used React, React Material UI framework, styled components to have a nice UI for the user. 
 
